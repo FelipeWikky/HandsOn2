@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@mipmap/home_black_48dp"
+        android:title="@string/menu_home" />
+
+    <item android:title="@string/menu_prontuario">
+        <item
+            android:id="@+id/nav_cadProntuario"
+            android:icon="@mipmap/add_black_48dp"
+            android:title="@string/menu_cad" />
+        <item
+            android:id="@+id/nav_listProntuario"
+            android:icon="@mipmap/list_black_48dp"
+            android:title="@string/menu_list" />
+    </item>
+</menu>
