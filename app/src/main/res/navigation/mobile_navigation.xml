@@ -14,13 +14,13 @@
     <fragment
         android:id="@+id/nav_cadProntuario"
         android:name="com.example.handson.ui.prontuario.CadFragment"
-        android:label="@string/menu_cad"
+        android:label="@string/title_cad"
         tools:layout="@layout/fragment_cad" />
 
     <fragment
         android:id="@+id/nav_listProntuario"
         android:name="com.example.handson.ui.prontuario.ListFragment"
-        android:label="@string/menu_list"
+        android:label="@string/title_list"
         tools:layout="@layout/fragment_list" />
 
 </navigation>

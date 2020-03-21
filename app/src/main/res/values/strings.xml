@@ -16,4 +16,16 @@
     <string name="menu_prontuario">Prontuário</string>
 
     <string name="act_title_home">Principal</string>
+    <string name="title_cad">Cadastro</string>
+    <string name="title_list">Prontuários</string>
+
+    <string name="textVisit"><b>Visitou algum destes países?</b></string>
+    <string name="textQuantityDays">Quantos Dias?</string>
+
+    
+    <string name="chkItalia">Itália</string>
+    <string name="chkChina">China</string>
+    <string name="chkIndonesia">Indonésia</string>
+    <string name="chkPortugal">Portugal</string>
+    <string name="chkEua">E.U.A</string>
 </resources>

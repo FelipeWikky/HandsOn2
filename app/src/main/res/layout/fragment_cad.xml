@@ -1,13 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/gray"
     android:layout_height="match_parent"
-    tools:context=".ui.prontuario.CadFragment">
+    android:layout_width="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
         android:layout_height="match_parent"
-        android:text="Cadastrar Prontuário" />
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="Informe seu CPF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/inputCpf"
+            android:textSize="15sp"
+            android:maxLength="11"
+            android:inputType="number"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="Informe seu Nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/inputName"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="Informe sua Idade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/inputAge"
+            android:inputType="number"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="Qual sua Temperatura Corporal ºC ?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:tooltipText="Temperatura Corporal em Graus Celsius"
+            android:inputType="number"
+            android:maxLength="2"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:textSize="18sp"
+                android:id="@+id/chkCough"
+                android:text="Esteve tossindo recentemente?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputCough"
+                android:hint="Quantos dias com Tosse"
+                android:inputType="number"
+                android:visibility="invisible"
+                android:layout_below="@id/chkCough"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:textSize="18sp"
+                android:id="@+id/chkHedache"
+                android:text="Teve dor de Cabeça recentemente?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputHeadache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/chkHedache"
+                android:hint="Quantos dias com dor de Cabeça"
+                android:visibility="invisible"
+                android:inputType="number" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginVertical="5dp"
+            android:text="@string/textVisit"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textFontWeight="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:textSize="22sp"
+                android:id="@+id/chkItalia"
+                android:text="@string/chkItalia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputItalia"
+                android:layout_marginStart="10dp"
+                android:hint="Quantos Dias?"
+                android:layout_toRightOf="@+id/chkItalia"
+                android:inputType="number"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chkChina"
+                android:textSize="22sp"
+                android:text="@string/chkChina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputChina"
+                android:layout_marginStart="10dp"
+                android:hint="@string/textQuantityDays"
+                android:layout_toRightOf="@+id/chkChina"
+                android:inputType="number"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chkIndonesia"
+                android:textSize="22sp"
+                android:text="@string/chkIndonesia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputIndonesia"
+                android:layout_marginStart="10dp"
+                android:hint="@string/textQuantityDays"
+                android:layout_toRightOf="@+id/chkIndonesia"
+                android:inputType="number"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chkPortugal"
+                android:textSize="22sp"
+                android:text="@string/chkPortugal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputPortugal"
+                android:layout_marginStart="10dp"
+                android:hint="@string/textQuantityDays"
+                android:layout_toRightOf="@+id/chkPortugal"
+                android:inputType="number"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chkEua"
+                android:textSize="22sp"
+                android:text="@string/chkEua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputEua"
+                android:layout_marginStart="10dp"
+                android:hint="@string/textQuantityDays"
+                android:layout_toRightOf="@+id/chkEua"
+                android:inputType="number"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
+
