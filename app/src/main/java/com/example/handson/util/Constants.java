@@ -1,10 +1,22 @@
 package com.example.handson.util;
 
 public class Constants {
-    public final static int CODE_OK = 10010;
-    public final static int CODE_ERROR_EMPTY = 10020;
+    public final static int CODE_OK = 200;
+    public final static int CODE_NOT_FOUND = 404;
 
-    public final static int CODE_INTERNADO = 20010;
-    public final static int CODE_QUARENTENA = 20020;
-    public final static int CODE_LIBERADO = 20030;
+    public final static int CODE_FIELD_OK = 10010;
+    public final static int CODE_FIELD_EMPTY = 10020;
+
+    /*Database*/
+    public final static int CODE_INSERT_OK = 20010;
+    public final static int CODE_INSERT_ERROR = -1;
+    public final static int CODE_INSERT_ERROR_UNIQUE = 20020; //duplicação de chave primária
+
+    /*Status Diagnosis*/
+    public final static int CODE_LIBERADO = 0;
+    public final static int CODE_QUARENTENA = 1;
+    public final static int CODE_INTERNADO = 2;
+
+    public static String[] COUNTRYS = {"Italia", "China", "Indonesia", "Portugal", "Eua"};
+    public static String[] STATUS_DIAGNOSIS = {"LIBERADO", "QUARENTENA", "INTERNADO"};
 }

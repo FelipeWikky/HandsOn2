@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_action_excluir"
+        android:title="Excluir"
+        />
+    <item
+        android:id="@+id/menu_action_update"
+        android:title="Alterar"
+        android:visible="false"
+        />
+</menu>

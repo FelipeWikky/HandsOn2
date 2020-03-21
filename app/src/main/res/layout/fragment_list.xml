@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.prontuario.ListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Listar Prontuários" />
+    <Button
+        android:id="@+id/btnLiberado"
+        android:layout_width="100dp"
+        android:layout_marginLeft="28dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:text="Liberado" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btnQuarentena"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btnLiberado"
+        android:background="@drawable/buttonshape"
+        android:text="Quarentena" />
+
+    <Button
+        android:id="@+id/btnInternado"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btnQuarentena"
+        android:background="@drawable/buttonshape"
+        android:text="Internado" />
+
+    <ListView
+        android:id="@+id/lstProntuarios"
+        android:layout_below="@+id/btnLiberado"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

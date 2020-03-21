@@ -17,18 +17,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.handson.R;
+import com.example.handson.dao.PacienteDAO;
 import com.example.handson.model.Paciente;
 
 import static com.example.handson.controller.Functions.verifyDiagnosis;
-import static com.example.handson.util.Constants.CODE_ERROR_EMPTY;
+import static com.example.handson.util.Constants.CODE_FIELD_EMPTY;
+import static com.example.handson.util.Constants.CODE_FIELD_OK;
+import static com.example.handson.util.Constants.CODE_INSERT_ERROR;
+import static com.example.handson.util.Constants.CODE_INSERT_ERROR_UNIQUE;
+import static com.example.handson.util.Constants.CODE_INSERT_OK;
 import static com.example.handson.util.Constants.CODE_INTERNADO;
 import static com.example.handson.util.Constants.CODE_LIBERADO;
-import static com.example.handson.util.Constants.CODE_OK;
 import static com.example.handson.util.Constants.CODE_QUARENTENA;
 
 public class CadFragment extends Fragment {
     private View root;
     private Paciente paciente = new Paciente();
+    private PacienteDAO pacienteDAO;
 
     private EditText inputCpf, inputName, inputAge, inputTemp;
     private CheckBox chkCough; private EditText inputCough;
@@ -53,6 +58,8 @@ public class CadFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_cad, container, false);
         setHasOptionsMenu(true);
+
+        pacienteDAO = new PacienteDAO(getActivity());
 
         inputCpf = root.findViewById(R.id.edtCpf);
         inputName = root.findViewById(R.id.edtName);
@@ -121,25 +128,25 @@ public class CadFragment extends Fragment {
                     getChecked(chkHeadache) ? Integer.parseInt(inputCough.getText().toString()) : 0
             );
 
-            paciente.addCountryVisit("Italia" ,
+            paciente.addCountryVisit(
                     getChecked(chkItalia) ? Integer.parseInt(inputItalia.getText().toString()) : 0
             );
 
-            paciente.addCountryVisit("China",
+            paciente.addCountryVisit(
                     getChecked(chkChina) ? Integer.parseInt(inputChina.getText().toString()) : 0);
 
-            paciente.addCountryVisit("Indonesia",
+            paciente.addCountryVisit(
                     getChecked(chkIndonesia)? Integer.parseInt(inputIndonesia.getText().toString()) : 0);
 
-            paciente.addCountryVisit("Portugal",
+            paciente.addCountryVisit(
                     getChecked(chkPortugal) ? Integer.parseInt(inputPortugal.getText().toString()) : 0);
 
-            paciente.addCountryVisit("Eua",
+            paciente.addCountryVisit(
                     getChecked(chkEua) ? Integer.parseInt(inputEua.getText().toString()) : 0);
 
-            return CODE_OK;
+            return CODE_FIELD_OK;
         }catch (NumberFormatException e ){ //NumberFormatException | NullPointerException
-            return CODE_ERROR_EMPTY;
+            return CODE_FIELD_EMPTY;
         }
     }
 
@@ -161,12 +168,19 @@ public class CadFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.menu_cadastrar: {
                 switch ( getData() ){
-                    case CODE_OK:
+                    case CODE_FIELD_OK:
                         paciente.setDiagnosis( verifyDiagnosis(paciente) );
-                        responseDiagnosis();
+                        long code = pacienteDAO.insert(paciente);
+                        switch ((int)code) {
+                            case CODE_INSERT_ERROR:
+                                Toast.makeText(getActivity(), "Já existe um Prontuário cadastrado com este CPF.", Toast.LENGTH_SHORT).show();
+                                break;
+                            default:
+                                responseDiagnosis();
+                        }
                         break;
-                    case CODE_ERROR_EMPTY:
-                        Toast.makeText(getActivity(), "Alguns campos ficaram vazios. Verifique-os", Toast.LENGTH_SHORT).show();
+                    case CODE_FIELD_EMPTY:
+                        Toast.makeText(getActivity(), "Os campos obrigatórios precisam ser informados.", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -186,7 +200,21 @@ public class CadFragment extends Fragment {
                 Toast.makeText(getActivity(), "Você está liberado. Mas continue se cuidado ao máximo.", Toast.LENGTH_LONG).show();
                 break;
         }
-        Toast.makeText(getActivity(), paciente.toString(), Toast.LENGTH_LONG).show();
+        clearComponents();
+    }
+
+    private void clearComponents(){
+        inputCpf.setText("");
+        inputName.setText("");
+        inputAge.setText("");
+        inputTemp.setText("");;
+        chkCough.setChecked(false);
+        chkHeadache.setChecked(false);
+        chkItalia.setChecked(false);
+        chkChina.setChecked(false);
+        chkIndonesia.setChecked(false);
+        chkPortugal.setChecked(false);
+        chkEua.setChecked(false);
     }
 
 }

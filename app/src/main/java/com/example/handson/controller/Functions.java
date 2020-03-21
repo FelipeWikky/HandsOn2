@@ -1,6 +1,8 @@
 package com.example.handson.controller;
 
 
+import android.util.Log;
+
 import com.example.handson.model.Paciente;
 
 import static com.example.handson.util.Constants.CODE_INTERNADO;
@@ -11,17 +13,18 @@ public class Functions {
 
     public static int verifyDiagnosis(Paciente paciente){
         int visit = 0;
-        for (String key : paciente.getCountryVisit().keySet()){
-            if ( (paciente.getCountryVisit().get(key) > 0) && ( paciente.getCountryVisit().get(key) <= 6) ) {
-                visit ++;
+        for(int week : paciente.getCountryVisit() ){
+            if ( (week > 0) && (week < 6) ) {
+                visit++;
             }
         }
-
+        Log.d("visit", String.valueOf(visit));
         //Visitou algum dos países da lista há pelo menos 6 semanas?
         if (visit > 0) {
             if ( paciente.getCoughDays() > 5 && paciente.getHeadacheDays() > 5 ) { //Tosse e Dor de cabeça a mais de 5 dias?
-                if (isFebre(paciente))
+                if (isFebre(paciente)){
                     return CODE_INTERNADO;
+                }
             }
             return CODE_QUARENTENA;
         }
@@ -38,6 +41,6 @@ public class Functions {
     }
 
     private static boolean isFebre(Paciente paciente){
-        return (paciente.getBodyTemp() > 37 ? true : false);
+        return (paciente.getBodyTemp() > 37);
     }
 }

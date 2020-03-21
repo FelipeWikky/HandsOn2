@@ -1,30 +1,29 @@
 package com.example.handson.model;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
+import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import static com.example.handson.util.Constants.COUNTRYS;
+import static com.example.handson.util.Constants.STATUS_DIAGNOSIS;
 
 public class Paciente {
+
     private String cpf;
     private String name;
     private int age;
     private int bodyTemp; //Temperatura Corporal
     private int coughDays; //Dias em tosse
     private int headacheDays; //Dias com dor de cabeça
-    private Map<String, Integer> countryVisit;
+    private List<Integer> countryVisit = new ArrayList<Integer>();
     private int diagnosis;
 
     public Paciente() {
-        this.countryVisit = new HashMap<String, Integer>();
-    }
-
-    public Paciente(String cpf, String name, int age){
-        this.countryVisit = new HashMap<String, Integer>();
-        this.cpf = cpf;
-        this.name = name;
-        this.age = age;
     }
 
     public String getCpf() {
@@ -75,12 +74,12 @@ public class Paciente {
         this.headacheDays = headacheDays;
     }
 
-    public Map<String, Integer> getCountryVisit() {
-        return countryVisit;
+    public List<Integer> getCountryVisit(){
+        return this.countryVisit;
     }
 
-    public void addCountryVisit(String country, int days){
-        getCountryVisit().put(country, days);
+    public void addCountryVisit(int week){
+        countryVisit.add(week);
     }
 
     public int getDiagnosis(){
@@ -91,20 +90,37 @@ public class Paciente {
         this.diagnosis = diagnosis;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Paciente)) return false;
+        Paciente paciente = (Paciente) o;
+        return cpf.equals(paciente.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cpf);
+    }
+
     @NonNull
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Paciente: " + getName() + "\n");
-        builder.append("Idade: " + getAge() + "\n");
-        builder.append("Temp. Corporal: " + getBodyTemp() + "\n");
-        builder.append("Dias de Tosse: " + getCoughDays() + "\n");
-        builder.append("Dias com Dor de Cabeça: " + getHeadacheDays() + "\n");
-        for (String key : getCountryVisit().keySet()) {
-            if (getCountryVisit().get(key) > 0)
-                builder.append("Visitou " + key + " há " + getCountryVisit().get(key) + " Semanas atrás.\n");
+        builder.append("Idade: " + getAge() + " Anos.\t\t");
+        builder.append("CPF: " + getCpf() + "\n");
+        builder.append("Temperatura Corporal: " + getBodyTemp() + "ºC \n");
+        builder.append("Dias com Tosse: " + getCoughDays() + " dias.\n");
+        builder.append("Dias com Dor de Cabeça: " + getHeadacheDays() + " dias.\n");
+        int val = 0;
+        for (int visit : getCountryVisit()) {
+            if (visit > 0)
+                builder.append("Visitou " + COUNTRYS[val] + " há " + visit + " Semanas atrás.\n");
+            val++;
         }
+        builder.append("Diagnóstico: " + STATUS_DIAGNOSIS[getDiagnosis()]);
 
-        return builder.toString(); //super.toString();
+        return builder.toString();
     }
 }
