@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
-            android:id="@+id/inputCpf"
+            android:id="@+id/edtCpf"
             android:textSize="15sp"
             android:maxLength="11"
             android:inputType="number"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
-            android:id="@+id/inputName"
+            android:id="@+id/edtName"
             android:inputType="textPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -45,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
-            android:id="@+id/inputAge"
+            android:id="@+id/edtAge"
+            android:maxLength="3"
             android:inputType="number"
             android:layout_width="40dp"
             android:layout_height="wrap_content"/>
@@ -57,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/edtTemp"
             android:tooltipText="Temperatura Corporal em Graus Celsius"
             android:inputType="number"
             android:maxLength="2"
@@ -73,8 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputCough"
-                android:hint="Quantos dias com Tosse"
+                android:id="@+id/edtCough"
+                android:hint="Quantos dias com Tosse?"
                 android:inputType="number"
                 android:visibility="invisible"
                 android:layout_below="@id/chkCough"
@@ -87,17 +89,17 @@
             android:layout_height="wrap_content">
             <CheckBox
                 android:textSize="18sp"
-                android:id="@+id/chkHedache"
+                android:id="@+id/chkHeadache"
                 android:text="Teve dor de Cabeça recentemente?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputHeadache"
+                android:id="@+id/edtHeadache"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_below="@id/chkHedache"
-                android:hint="Quantos dias com dor de Cabeça"
+                android:layout_below="@id/chkHeadache"
+                android:hint="Quantos dias com dor de Cabeça?"
                 android:visibility="invisible"
                 android:inputType="number" />
         </RelativeLayout>
@@ -121,12 +123,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputItalia"
+                android:id="@+id/edtItalia"
                 android:layout_marginStart="10dp"
-                android:hint="Quantos Dias?"
+                android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkItalia"
                 android:inputType="number"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>
@@ -141,12 +143,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputChina"
+                android:id="@+id/edtChina"
                 android:layout_marginStart="10dp"
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkChina"
                 android:inputType="number"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>
@@ -161,12 +163,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputIndonesia"
+                android:id="@+id/edtIndonesia"
                 android:layout_marginStart="10dp"
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkIndonesia"
                 android:inputType="number"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>
@@ -181,12 +183,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputPortugal"
+                android:id="@+id/edtPortugal"
                 android:layout_marginStart="10dp"
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkPortugal"
                 android:inputType="number"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>
@@ -201,12 +203,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/inputEua"
+                android:id="@+id/edtEua"
                 android:layout_marginStart="10dp"
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkEua"
                 android:inputType="number"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>

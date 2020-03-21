@@ -1,5 +1,8 @@
 package com.example.handson.model;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ public class Paciente {
     private int coughDays; //Dias em tosse
     private int headacheDays; //Dias com dor de cabeça
     private Map<String, Integer> countryVisit;
+    private int diagnosis;
 
     public Paciente() {
         this.countryVisit = new HashMap<String, Integer>();
@@ -77,5 +81,30 @@ public class Paciente {
 
     public void addCountryVisit(String country, int days){
         getCountryVisit().put(country, days);
+    }
+
+    public int getDiagnosis(){
+        return diagnosis;
+    }
+
+    public void setDiagnosis(int diagnosis){
+        this.diagnosis = diagnosis;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Paciente: " + getName() + "\n");
+        builder.append("Idade: " + getAge() + "\n");
+        builder.append("Temp. Corporal: " + getBodyTemp() + "\n");
+        builder.append("Dias de Tosse: " + getCoughDays() + "\n");
+        builder.append("Dias com Dor de Cabeça: " + getHeadacheDays() + "\n");
+        for (String key : getCountryVisit().keySet()) {
+            if (getCountryVisit().get(key) > 0)
+                builder.append("Visitou " + key + " há " + getCountryVisit().get(key) + " Semanas atrás.\n");
+        }
+
+        return builder.toString(); //super.toString();
     }
 }
