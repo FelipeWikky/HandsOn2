@@ -18,7 +18,7 @@ public class Paciente {
     private String name;
     private int age;
     private int bodyTemp; //Temperatura Corporal
-    private int coughDays; //Dias em tosse
+    private int coughDays; //Dias com tosse
     private int headacheDays; //Dias com dor de cabeça
     private List<Integer> countryVisit = new ArrayList<Integer>();
     private int diagnosis;
@@ -108,8 +108,8 @@ public class Paciente {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Paciente: " + getName() + "\n");
-        builder.append("Idade: " + getAge() + " Anos.\t\t");
         builder.append("CPF: " + getCpf() + "\n");
+        builder.append("Idade: " + getAge() + " Anos.\n");
         builder.append("Temperatura Corporal: " + getBodyTemp() + "ºC \n");
         builder.append("Dias com Tosse: " + getCoughDays() + " dias.\n");
         builder.append("Dias com Dor de Cabeça: " + getHeadacheDays() + " dias.\n");

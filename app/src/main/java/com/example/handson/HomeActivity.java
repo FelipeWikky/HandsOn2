@@ -3,6 +3,7 @@ package com.example.handson;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -56,6 +57,15 @@ public class HomeActivity extends AppCompatActivity {
 
         ((TextView) header.findViewById(R.id.headerTitle)).setText("Hands On");
         ((TextView) header.findViewById(R.id.headerDesc)).setText("Março/2020 - Android Nativo");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

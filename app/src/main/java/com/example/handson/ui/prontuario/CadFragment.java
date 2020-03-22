@@ -1,17 +1,15 @@
 package com.example.handson.ui.prontuario;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,13 +17,13 @@ import android.widget.Toast;
 import com.example.handson.R;
 import com.example.handson.dao.PacienteDAO;
 import com.example.handson.model.Paciente;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import static com.example.handson.controller.Functions.verifyDiagnosis;
 import static com.example.handson.util.Constants.CODE_FIELD_EMPTY;
 import static com.example.handson.util.Constants.CODE_FIELD_OK;
 import static com.example.handson.util.Constants.CODE_INSERT_ERROR;
-import static com.example.handson.util.Constants.CODE_INSERT_ERROR_UNIQUE;
-import static com.example.handson.util.Constants.CODE_INSERT_OK;
 import static com.example.handson.util.Constants.CODE_INTERNADO;
 import static com.example.handson.util.Constants.CODE_LIBERADO;
 import static com.example.handson.util.Constants.CODE_QUARENTENA;
@@ -62,6 +60,7 @@ public class CadFragment extends Fragment {
         pacienteDAO = new PacienteDAO(getActivity());
 
         inputCpf = root.findViewById(R.id.edtCpf);
+        callMask();
         inputName = root.findViewById(R.id.edtName);
         inputAge = root.findViewById(R.id.edtAge);
         inputTemp = root.findViewById(R.id.edtTemp);
@@ -69,30 +68,37 @@ public class CadFragment extends Fragment {
         chkCough = root.findViewById(R.id.chkCough);
         inputCough = root.findViewById(R.id.edtCough);
         syncCheckBoxInput(chkCough, inputCough);
+        setDynamicWidth(inputCough);
 
         chkHeadache = root.findViewById(R.id.chkHeadache);
         inputHeadache = root.findViewById(R.id.edtHeadache);
         syncCheckBoxInput(chkHeadache, inputHeadache);
+        setDynamicWidth(inputHeadache);
 
         chkItalia = root.findViewById(R.id.chkItalia);
         inputItalia = root.findViewById(R.id.edtItalia);
         syncCheckBoxInput(chkItalia, inputItalia);
+        setDynamicWidth(inputItalia);
 
         chkChina = root.findViewById(R.id.chkChina);
         inputChina = root.findViewById(R.id.edtChina);
         syncCheckBoxInput(chkChina, inputChina);
+        setDynamicWidth(inputChina);
 
         chkIndonesia = root.findViewById(R.id.chkIndonesia);
         inputIndonesia = root.findViewById(R.id.edtIndonesia);
         syncCheckBoxInput(chkIndonesia, inputIndonesia);
+        setDynamicWidth(inputIndonesia);
 
         chkPortugal = root.findViewById(R.id.chkPortugal);
         inputPortugal = root.findViewById(R.id.edtPortugal);
         syncCheckBoxInput(chkPortugal, inputPortugal);
+        setDynamicWidth(inputPortugal);
 
         chkEua = root.findViewById(R.id.chkEua);
         inputEua = root.findViewById(R.id.edtEua);
         syncCheckBoxInput(chkEua, inputEua);
+        setDynamicWidth(inputEua);
 
 
         return root;
@@ -154,7 +160,6 @@ public class CadFragment extends Fragment {
         return checkBox.isChecked();
     }
 
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         MenuItem mItem = menu.findItem(R.id.menu_sobre);
@@ -197,7 +202,7 @@ public class CadFragment extends Fragment {
                 Toast.makeText(getActivity(), "Aconselhamos a ficar em Quarentena.", Toast.LENGTH_LONG).show();
                 break;
             case CODE_LIBERADO:
-                Toast.makeText(getActivity(), "Você está liberado. Mas continue se cuidado ao máximo.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Você está liberado. Mas continue se cuidando.", Toast.LENGTH_LONG).show();
                 break;
         }
         clearComponents();
@@ -209,12 +214,54 @@ public class CadFragment extends Fragment {
         inputAge.setText("");
         inputTemp.setText("");;
         chkCough.setChecked(false);
+        inputCough.setVisibility(EditText.INVISIBLE);
         chkHeadache.setChecked(false);
+        inputHeadache.setVisibility(EditText.INVISIBLE);
         chkItalia.setChecked(false);
+        inputItalia.setVisibility(EditText.INVISIBLE);
         chkChina.setChecked(false);
+        inputChina.setVisibility(EditText.INVISIBLE);
         chkIndonesia.setChecked(false);
+        inputIndonesia.setVisibility(EditText.INVISIBLE);
         chkPortugal.setChecked(false);
+        inputPortugal.setVisibility(EditText.INVISIBLE);
         chkEua.setChecked(false);
+        inputEua.setVisibility(EditText.INVISIBLE);
+    }
+
+    private void callMask(){
+        SimpleMaskFormatter smfCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
+        MaskTextWatcher mtwCpf = new MaskTextWatcher(inputCpf, smfCpf);
+        inputCpf.addTextChangedListener(mtwCpf);
+    }
+
+    private void setDynamicWidth(final EditText input){
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                final int length = input.getText().toString().length();
+                if ( length> 1 && before == 0) {
+                    input.getLayoutParams().width = input.getWidth() + 15;
+                } else if(length == 1) {
+                    input.getLayoutParams().width = 50;
+                } else if (before == 1 && length > 0) {
+                    input.getLayoutParams().width = input.getWidth() - 15;
+                } else {
+                    input.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT ;
+                }
+                input.requestLayout();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
 }

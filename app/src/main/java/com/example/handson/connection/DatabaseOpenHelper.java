@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
     private static final String name = "hands.db";
@@ -17,7 +16,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE pacientes(" +
-                //"id integer primary key autoincrement, " +
                 "cpf varchar(14) primary key, " +
                 "name varchar(50), " +
                 "age integer, " +

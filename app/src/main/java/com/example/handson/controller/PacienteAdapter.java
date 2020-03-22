@@ -31,20 +31,19 @@ public class PacienteAdapter extends ArrayAdapter<Paciente> {
 
     @Override
     public int getCount() {
-        return pacientes.size();//return super.getCount();
+        return pacientes.size();
     }
 
     @Nullable
     @Override
     public Paciente getItem(int position) {
-        return pacientes.get(position);//return super.getItem(position);
+        return pacientes.get(position);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = null;//((Activity) context).getLayoutInflater().inflate(R.layout.adapter_list_prontuario, parent, false);
-
+        View view = null;
 
         if (pacientes != null) {
             view = ((Activity) context).getLayoutInflater().inflate(R.layout.adapter_list_prontuario, parent, false);
@@ -53,10 +52,10 @@ public class PacienteAdapter extends ArrayAdapter<Paciente> {
             TextView diagnosis = (TextView) view.findViewById(R.id.txtAdapterDiagnosis);
             Paciente p = pacientes.get(position);
             name.setText(p.getName());
-            cpfAge.setText("CPF: " + p.getCpf() + "\t\t Idade: " + p.getAge());
+            cpfAge.setText("CPF: " + p.getCpf() + "\t\t Idade: " + p.getAge() + " Anos.");
             diagnosis.setText("Diagnóstico: " + STATUS_DIAGNOSIS[p.getDiagnosis()]);
         }
 
-        return view;//super.getView(position, convertView, parent);
+        return view;
     }
 }

@@ -12,15 +12,15 @@ import static com.example.handson.util.Constants.CODE_QUARENTENA;
 public class Functions {
 
     public static int verifyDiagnosis(Paciente paciente){
-        int visit = 0;
+        int visits = 0;
         for(int week : paciente.getCountryVisit() ){
-            if ( (week > 0) && (week < 6) ) {
-                visit++;
+            if ( (week > 0) && (week <= 6) ) {
+                visits++;
             }
         }
-        Log.d("visit", String.valueOf(visit));
+
         //Visitou algum dos países da lista há pelo menos 6 semanas?
-        if (visit > 0) {
+        if (visits > 0) {
             if ( paciente.getCoughDays() > 5 && paciente.getHeadacheDays() > 5 ) { //Tosse e Dor de cabeça a mais de 5 dias?
                 if (isFebre(paciente)){
                     return CODE_INTERNADO;

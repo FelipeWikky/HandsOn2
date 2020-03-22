@@ -65,8 +65,19 @@ public class ListFragment extends Fragment {
         //ArrayAdapter<Paciente> adapter = new ArrayAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, pacientes);
         adapter = new PacienteAdapter(getActivity(), pacientesFilter);
         lstProntuarios.setAdapter(adapter);
-
         registerForContextMenu(lstProntuarios);
+
+        lstProntuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog alert = new AlertDialog.Builder(getActivity())
+                        .setTitle("Prontuário")
+                        .setMessage(pacientesFilter.get(i).toString())
+                        .setPositiveButton("OK", null)
+                        .create();
+                alert.show();
+            }
+        });
 
         btnLiberado = root.findViewById(R.id.btnLiberado);
         setCommandButton(btnLiberado);

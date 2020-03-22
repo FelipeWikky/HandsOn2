@@ -5,9 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.example.handson.R;
 import com.example.handson.connection.DatabaseOpenHelper;
 import com.example.handson.model.Paciente;
 
@@ -15,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.handson.util.Constants.CODE_INSERT_ERROR_UNIQUE;
-import static com.example.handson.util.Constants.CODE_INSERT_OK;
-import static com.example.handson.util.Constants.CODE_OK;
 
 public class PacienteDAO {
     private DatabaseOpenHelper databaseOpenHelper;

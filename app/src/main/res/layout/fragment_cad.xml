@@ -15,13 +15,13 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/black"
-            android:text="Informe seu CPF"
+            android:text="Informe seu CPF*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/edtCpf"
             android:textSize="15sp"
-            android:maxLength="11"
+            android:maxLength="14"
             android:inputType="number"
             android:layout_width="150dp"
             android:layout_height="wrap_content" />
@@ -29,19 +29,19 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/black"
-            android:text="Informe seu Nome"
+            android:text="Informe seu Nome*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/edtName"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:textSize="15sp"
             android:textColor="@color/black"
-            android:text="Informe sua Idade"
+            android:text="Informe sua Idade*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
@@ -54,7 +54,7 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/black"
-            android:text="Qual sua Temperatura Corporal ºC ?"
+            android:text="Qual sua Temperatura Corporal ºC ?*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
@@ -76,8 +76,9 @@
                 android:layout_height="wrap_content"/>
             <EditText
                 android:id="@+id/edtCough"
-                android:hint="Quantos dias com Tosse?"
+                android:hint="Há quantos dias com Tosse?"
                 android:inputType="number"
+                android:maxLength="3"
                 android:visibility="invisible"
                 android:layout_below="@id/chkCough"
                 android:layout_width="wrap_content"
@@ -99,7 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_below="@id/chkHeadache"
-                android:hint="Quantos dias com dor de Cabeça?"
+                android:maxLength="3"
+                android:hint="Há quantos dias com dor de Cabeça?"
                 android:visibility="invisible"
                 android:inputType="number" />
         </RelativeLayout>
@@ -129,6 +131,7 @@
                 android:layout_toRightOf="@+id/chkItalia"
                 android:inputType="number"
                 android:visibility="invisible"
+                android:maxLength="3"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>
@@ -148,6 +151,7 @@
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkChina"
                 android:inputType="number"
+                android:maxLength="3"
                 android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
@@ -168,6 +172,7 @@
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkIndonesia"
                 android:inputType="number"
+                android:maxLength="3"
                 android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
@@ -188,6 +193,7 @@
                 android:hint="@string/textQuantityDays"
                 android:layout_toRightOf="@+id/chkPortugal"
                 android:inputType="number"
+                android:maxLength="3"
                 android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
@@ -209,10 +215,10 @@
                 android:layout_toRightOf="@+id/chkEua"
                 android:inputType="number"
                 android:visibility="invisible"
+                android:maxLength="3"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"/>
         </RelativeLayout>
-
 
     </LinearLayout>
 
