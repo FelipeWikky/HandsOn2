@@ -43,10 +43,8 @@ public class PacienteAdapter extends ArrayAdapter<Paciente> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = null;
-
+        View view = ((Activity) context).getLayoutInflater().inflate(R.layout.adapter_list_prontuario, parent, false);
         if (pacientes != null) {
-            view = ((Activity) context).getLayoutInflater().inflate(R.layout.adapter_list_prontuario, parent, false);
             TextView name = (TextView) view.findViewById(R.id.txtAdapterName);
             TextView cpfAge = (TextView) view.findViewById(R.id.txtAdapterCpf);
             TextView diagnosis = (TextView) view.findViewById(R.id.txtAdapterDiagnosis);

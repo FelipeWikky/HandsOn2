@@ -8,34 +8,34 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="O mundo está em polvorosa com a nova pandemia do Covid-19." />
     <TextView
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
         android:text="Um novo vírus que chegou derrubando economias globais, fechando
 fronteiras, além de escolas e eventos."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
         android:text="Como uma alternativa, este app foi desenvolvido."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:text="Cadastre os dados de um Paciente e com base nas características dele, notificará sobre a necessidade de se Internar, ficar em quarentena ou liberado, mas sempre tendo o máximo de cuidados."
+        android:text="Cadastre os dados de um Paciente e com base nas características dele, notificará sobre a necessidade de se internar, ficar em quarentena ou liberado, mas sempre tendo o máximo de cuidados."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:layout_marginTop="10dp"
-        android:text="Comece já testando as funcionalidades. Clique no Menu a esquerda ou arraste a tela para o lado direito."
+        android:text="Comece já testando as funcionalidades, clicando no Menu à esquerda."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

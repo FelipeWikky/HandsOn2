@@ -40,7 +40,7 @@ public class Functions {
         return CODE_LIBERADO;
     }
 
-    private static boolean isFebre(Paciente paciente){
+    public static boolean isFebre(Paciente paciente){
         return (paciente.getBodyTemp() > 37);
     }
 }

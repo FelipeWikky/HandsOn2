@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.handson.controller.Functions.isFebre;
 import static com.example.handson.util.Constants.COUNTRYS;
 import static com.example.handson.util.Constants.STATUS_DIAGNOSIS;
 
@@ -24,6 +25,10 @@ public class Paciente {
     private int diagnosis;
 
     public Paciente() {
+    }
+
+    public Paciente(String name){
+        this.name = name;
     }
 
     public String getCpf() {
@@ -110,7 +115,11 @@ public class Paciente {
         builder.append("Paciente: " + getName() + "\n");
         builder.append("CPF: " + getCpf() + "\n");
         builder.append("Idade: " + getAge() + " Anos.\n");
-        builder.append("Temperatura Corporal: " + getBodyTemp() + "ºC \n");
+        builder.append("Temperatura Corporal: " + getBodyTemp() + "ºC ");
+        if (isFebre(this))
+            builder.append("- Febre\n");
+        else
+            builder.append("\n");
         builder.append("Dias com Tosse: " + getCoughDays() + " dias.\n");
         builder.append("Dias com Dor de Cabeça: " + getHeadacheDays() + " dias.\n");
         int val = 0;

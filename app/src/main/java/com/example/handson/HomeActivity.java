@@ -1,9 +1,11 @@
 package com.example.handson;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -61,16 +63,34 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        boolean isExit = false;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            showConfirmExit();
         }
+    }
+
+    private void showConfirmExit(){
+        AlertDialog alert = new AlertDialog.Builder(this)
+                .setTitle("Confirmar")
+                .setMessage("Deseja realmente sair?")
+                .setNegativeButton("Não", null)
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        exitApp();
+                    }
+                })
+                .show();
+    }
+
+    private void exitApp(){
+        super.onBackPressed();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
@@ -79,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sobre:
-                Toast.makeText(this, "Hands On!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Versão 1.0.0", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

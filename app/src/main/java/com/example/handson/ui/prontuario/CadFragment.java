@@ -213,19 +213,33 @@ public class CadFragment extends Fragment {
         inputName.setText("");
         inputAge.setText("");
         inputTemp.setText("");;
+
         chkCough.setChecked(false);
+        inputCough.setText("");
         inputCough.setVisibility(EditText.INVISIBLE);
+
         chkHeadache.setChecked(false);
+        inputHeadache.setText("");
         inputHeadache.setVisibility(EditText.INVISIBLE);
+
         chkItalia.setChecked(false);
+        inputItalia.setText("");
         inputItalia.setVisibility(EditText.INVISIBLE);
+
         chkChina.setChecked(false);
+        inputChina.setText("");
         inputChina.setVisibility(EditText.INVISIBLE);
+
         chkIndonesia.setChecked(false);
+        inputIndonesia.setText("");
         inputIndonesia.setVisibility(EditText.INVISIBLE);
+
         chkPortugal.setChecked(false);
+        inputPortugal.setText("");
         inputPortugal.setVisibility(EditText.INVISIBLE);
+
         chkEua.setChecked(false);
+        inputEua.setText("");
         inputEua.setVisibility(EditText.INVISIBLE);
     }
 

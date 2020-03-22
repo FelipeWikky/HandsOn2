@@ -30,13 +30,25 @@
         android:background="@drawable/buttonshape"
         android:text="Internado" />
 
+    <TextView
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:id="@+id/txtTitleList"
+        android:layout_below="@id/btnQuarentena"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textNotFoundProntuario" />
+
     <ListView
         android:id="@+id/lstProntuarios"
-        android:layout_below="@+id/btnLiberado"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/txtTitleList"
+
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+    </ListView>
 
 
 </RelativeLayout>
