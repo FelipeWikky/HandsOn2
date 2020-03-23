@@ -1,13 +1,11 @@
 package com.example.handson.ui.prontuario;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,30 +18,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.handson.R;
 import com.example.handson.controller.PacienteAdapter;
 import com.example.handson.dao.PacienteDAO;
 import com.example.handson.model.Paciente;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.handson.controller.Functions.filterPatients;
 import static com.example.handson.util.Constants.CODE_INTERNADO;
 import static com.example.handson.util.Constants.CODE_LIBERADO;
+import static com.example.handson.util.Constants.CODE_NULL;
 import static com.example.handson.util.Constants.CODE_QUARENTENA;
 
 public class ListFragment extends Fragment {
     private View root;
+    private Button btnLiberado, btnQuarentena, btnInternado;
+    private Button[] buttonsList;
+    private TextView txtTitle;
+
     private ListView lstProntuarios;
     private List<Paciente> pacientes;
     private List<Paciente> pacientesFilter;
-    ArrayAdapter<Paciente> adapter;
+    private ArrayAdapter<Paciente> adapter;
     private PacienteDAO pacienteDAO;
 
-    private Button btnLiberado, btnQuarentena, btnInternado;
-    private TextView txtTitle;
+    private int buttonClicked = 0;
 
     public ListFragment() {
         // Required empty public constructor
@@ -80,7 +81,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 AlertDialog alert = new AlertDialog.Builder(getActivity())
-                        .setTitle("Prontuário")
+                        .setTitle(pacientesFilter.get(i).getName())
                         .setMessage(pacientesFilter.get(i).toString())
                         .setPositiveButton("OK", null)
                         .create();
@@ -95,6 +96,8 @@ public class ListFragment extends Fragment {
         btnInternado = root.findViewById(R.id.btnInternado);
         setCommandButton(btnInternado);
 
+        buttonsList = new Button[]{btnLiberado, btnQuarentena, btnInternado};
+
         return root;
     }
 
@@ -102,46 +105,47 @@ public class ListFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (buttonClicked == v.getId()) {
+                    buttonClicked = 0;
+                    showFilterPatients(CODE_NULL);
+                    for(Button b : buttonsList){
+                        b.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
+                    }
+                    return;
+                }
                 switch (v.getId()){
                     case R.id.btnLiberado:
+                        buttonClicked = v.getId();
                         setSelectedButton((Button)v);
-                        filterPacients(CODE_LIBERADO);
+                        showFilterPatients(CODE_LIBERADO);
                         break;
                     case R.id.btnQuarentena:
+                        buttonClicked = v.getId();
                         setSelectedButton((Button)v);
-                        filterPacients(CODE_QUARENTENA);
+                        showFilterPatients(CODE_QUARENTENA);
                         break;
                     case R.id.btnInternado:
+                        buttonClicked = v.getId();
                         setSelectedButton((Button)v);
-                        filterPacients(CODE_INTERNADO);
+                        showFilterPatients(CODE_INTERNADO);
                         break;
                 }
             }
         });
     }
 
+    @SuppressLint("WrongConstant")
     private void setSelectedButton(final Button button) {
-        switch (button.getId()) {
-            case R.id.btnLiberado:
-                btnLiberado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape2));
-                btnQuarentena.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                btnInternado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                break;
-            case R.id.btnQuarentena:
-                btnLiberado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                btnQuarentena.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape2));
-                btnInternado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                break;
-            case R.id.btnInternado:
-                btnLiberado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                btnQuarentena.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                btnInternado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape2));
-                break;
-            default:
-                btnLiberado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                btnQuarentena.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
-                btnInternado.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
+        if (button.getFocusable() == 1){
+            button.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape2));
+            for(Button b : buttonsList){
+                if ( button.getId() != b.getId() ){
+                    b.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
+                }
+            }
         }
+         else
+            button.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonshape));
     }
 
     @Override
@@ -183,37 +187,36 @@ public class ListFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void filterPacients(int diagnosis){
+    private void showFilterPatients(int diagnosis){
         pacientesFilter.clear();
         switch (diagnosis) {
             case CODE_LIBERADO:
-                for(Paciente p : pacientes ){
-                    if(p.getDiagnosis() == CODE_LIBERADO) {
-                        pacientesFilter.add(p);
-                    }
+                for(Paciente p : filterPatients(CODE_LIBERADO, pacientes) ){
+                    pacientesFilter.add(p);
                 }
                 txtTitle.setText("Pacientes Liberados");
                 break;
-        case CODE_QUARENTENA:
-            for(Paciente p : pacientes ){
-                if(p.getDiagnosis() == CODE_QUARENTENA) {
+            case CODE_QUARENTENA:
+                for(Paciente p : filterPatients(CODE_QUARENTENA, pacientes) ){
                     pacientesFilter.add(p);
                 }
-            }
-            txtTitle.setText("Pacientes em Quarentena");
-            break;
-        case CODE_INTERNADO:
-            for(Paciente p : pacientes ){
-                if(p.getDiagnosis() == CODE_INTERNADO) {
+                txtTitle.setText("Pacientes em Quarentena");
+                break;
+            case CODE_INTERNADO:
+                for(Paciente p : filterPatients(CODE_INTERNADO, pacientes) ){
                     pacientesFilter.add(p);
                 }
-            }
-            txtTitle.setText("Pacientes Internados");
-            break;
+                txtTitle.setText("Pacientes Internados");
+                break;
+            default:
+                for(Paciente p : pacientes ){
+                    pacientesFilter.add(p);
+                }
+                txtTitle.setText("Todos Prontuários cadastrados");
         }
-
-        if (pacientesFilter.size() == 0 )
+        if (pacientesFilter.size() == 0 ){
             txtTitle.setText("Nenhum Prontuário encontrado");
+        }
 
         lstProntuarios.invalidateViews();
     }

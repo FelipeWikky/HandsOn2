@@ -28,7 +28,7 @@ fronteiras, além de escolas e eventos."
     <TextView
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:text="Cadastre os dados de um Paciente e com base nas características dele, notificará sobre a necessidade de se internar, ficar em quarentena ou liberado, mas sempre tendo o máximo de cuidados."
+        android:text="Cadastre os dados de um Paciente e com base nas características dele, notificará sobre a necessidade de se internar, ficar em quarentena ou liberado."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

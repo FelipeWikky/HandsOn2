@@ -14,7 +14,7 @@
 
         <TextView
             android:textSize="15sp"
-            android:textColor="@color/black"
+            android:textColor="@color/darkRed"
             android:text="Informe seu CPF*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -28,7 +28,7 @@
 
         <TextView
             android:textSize="15sp"
-            android:textColor="@color/black"
+            android:textColor="@color/darkRed"
             android:text="Informe seu Nome*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -40,7 +40,7 @@
 
         <TextView
             android:textSize="15sp"
-            android:textColor="@color/black"
+            android:textColor="@color/darkRed"
             android:text="Informe sua Idade*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -53,7 +53,7 @@
 
         <TextView
             android:textSize="15sp"
-            android:textColor="@color/black"
+            android:textColor="@color/darkRed"
             android:text="Qual sua Temperatura Corporal ºC ?*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"/>
 
         <RelativeLayout
+            android:id="@+id/relativeLayoutCough"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <CheckBox
@@ -83,14 +84,11 @@
                 android:layout_below="@id/chkCough"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
             <CheckBox
                 android:textSize="18sp"
                 android:id="@+id/chkHeadache"
+                android:layout_below="@id/edtCough"
                 android:text="Teve dor de Cabeça recentemente?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -106,6 +104,13 @@
                 android:inputType="number" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/relativeLayoutHeadace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
         <TextView
             android:layout_marginVertical="5dp"
             android:text="@string/textVisit"
@@ -116,6 +121,7 @@
             android:layout_height="wrap_content"/>
 
         <RelativeLayout
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <CheckBox

@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.example.handson.model.Paciente;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.handson.util.Constants.CODE_INTERNADO;
 import static com.example.handson.util.Constants.CODE_LIBERADO;
 import static com.example.handson.util.Constants.CODE_QUARENTENA;
@@ -43,4 +46,33 @@ public class Functions {
     public static boolean isFebre(Paciente paciente){
         return (paciente.getBodyTemp() > 37);
     }
+
+    public static ArrayList<Paciente> filterPatients(int codeStatus, List<Paciente> pacientes){
+        ArrayList<Paciente> pacientesFilter = new ArrayList<>();
+        switch (codeStatus) {
+            case CODE_LIBERADO:
+                for(Paciente p : pacientes ){
+                    if(p.getDiagnosis() == CODE_LIBERADO) {
+                        pacientesFilter.add(p);
+                    }
+                }
+                break;
+            case CODE_QUARENTENA:
+                for(Paciente p : pacientes ){
+                    if(p.getDiagnosis() == CODE_QUARENTENA) {
+                        pacientesFilter.add(p);
+                    }
+                }
+                break;
+            case CODE_INTERNADO:
+                for(Paciente p : pacientes ){
+                    if(p.getDiagnosis() == CODE_INTERNADO) {
+                        pacientesFilter.add(p);
+                    }
+                }
+                break;
+        }
+        return pacientesFilter;
+    }
+
 }

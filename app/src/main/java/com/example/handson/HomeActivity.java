@@ -23,6 +23,8 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.handson.util.Constants.GENERAl_VERSION;
+
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -99,9 +101,8 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sobre:
-                Toast.makeText(this, "Versão 1.0.0", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Versão " + GENERAl_VERSION, Toast.LENGTH_SHORT).show();
         }
-
         return super.onOptionsItemSelected(item);
     }
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.handson.R;
@@ -22,6 +23,7 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import static com.example.handson.controller.Functions.verifyDiagnosis;
 import static com.example.handson.util.Constants.CODE_FIELD_EMPTY;
+import static com.example.handson.util.Constants.CODE_FIELD_NOT_FORMATTED;
 import static com.example.handson.util.Constants.CODE_FIELD_OK;
 import static com.example.handson.util.Constants.CODE_INSERT_ERROR;
 import static com.example.handson.util.Constants.CODE_INTERNADO;
@@ -60,7 +62,8 @@ public class CadFragment extends Fragment {
         pacienteDAO = new PacienteDAO(getActivity());
 
         inputCpf = root.findViewById(R.id.edtCpf);
-        callMask();
+        callCpfMask(inputCpf);
+
         inputName = root.findViewById(R.id.edtName);
         inputAge = root.findViewById(R.id.edtAge);
         inputTemp = root.findViewById(R.id.edtTemp);
@@ -100,7 +103,6 @@ public class CadFragment extends Fragment {
         syncCheckBoxInput(chkEua, inputEua);
         setDynamicWidth(inputEua);
 
-
         return root;
     }
 
@@ -121,6 +123,9 @@ public class CadFragment extends Fragment {
 
     private int getData(){
         try {
+            if (inputCpf.getText().toString().length() != 14) {
+                return CODE_FIELD_NOT_FORMATTED;
+            }
             paciente.setCpf(inputCpf.getText().toString());
             paciente.setName(inputName.getText().toString());
             paciente.setAge(Integer.parseInt(inputAge.getText().toString()));
@@ -131,7 +136,7 @@ public class CadFragment extends Fragment {
             );
 
             paciente.setHeadacheDays(
-                    getChecked(chkHeadache) ? Integer.parseInt(inputCough.getText().toString()) : 0
+                    getChecked(chkHeadache) ? Integer.parseInt(inputHeadache.getText().toString()) : 0
             );
 
             paciente.addCountryVisit(
@@ -184,7 +189,12 @@ public class CadFragment extends Fragment {
                                 responseDiagnosis();
                         }
                         break;
+                    case CODE_FIELD_NOT_FORMATTED:
+                        inputCpf.requestFocus();
+                        Toast.makeText(getActivity(), "Digite todos os números do seu CPF.", Toast.LENGTH_SHORT).show();
+                        break;
                     case CODE_FIELD_EMPTY:
+                        verifyEmptyField();
                         Toast.makeText(getActivity(), "Os campos obrigatórios precisam ser informados.", Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -243,10 +253,10 @@ public class CadFragment extends Fragment {
         inputEua.setVisibility(EditText.INVISIBLE);
     }
 
-    private void callMask(){
+    private void callCpfMask(final EditText editText){
         SimpleMaskFormatter smfCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
-        MaskTextWatcher mtwCpf = new MaskTextWatcher(inputCpf, smfCpf);
-        inputCpf.addTextChangedListener(mtwCpf);
+        MaskTextWatcher mtwCpf = new MaskTextWatcher(editText, smfCpf);
+        editText.addTextChangedListener(mtwCpf);
     }
 
     private void setDynamicWidth(final EditText input){
@@ -276,6 +286,16 @@ public class CadFragment extends Fragment {
 
             }
         });
+    }
+
+    private void verifyEmptyField(){
+        if (inputName.getText().toString().isEmpty()) {
+            inputName.requestFocus();
+        }else if (inputAge.getText().toString().isEmpty()) {
+            inputAge.requestFocus();
+        } else if (inputTemp.getText().toString().isEmpty()) {
+            inputTemp.requestFocus();
+        }
     }
 
 }
