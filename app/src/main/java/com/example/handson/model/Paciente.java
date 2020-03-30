@@ -127,7 +127,7 @@ public class Paciente {
         int val = 0;
         for (int visit : getCountryVisit()) {
             if (visit > 0) {
-                builder.append("Visitou " + COUNTRYS[val] + " há " + visit + " Semanas.\n");
+                builder.append("• Visitou " + COUNTRYS[val] + " há " + visit + " Semanas.\n");
             }
             val++;
         }

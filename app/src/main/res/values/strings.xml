@@ -20,7 +20,7 @@
     <string name="title_list">Prontuários</string>
 
     <string name="textVisit"><b>Visitou algum destes países?</b></string>
-    <string name="textQuantityDays">Há quantas Semanas?</string>
+    <string name="textQuantityDays">Quantas Semanas atrás?</string>
     <string name="textNotFoundProntuario">Nenhum Prontuário encontrado</string>
 
     <string name="chkItalia">Itália</string>
