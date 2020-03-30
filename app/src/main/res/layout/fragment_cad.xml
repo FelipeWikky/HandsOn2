@@ -116,7 +116,6 @@
             android:text="@string/textVisit"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textFontWeight="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

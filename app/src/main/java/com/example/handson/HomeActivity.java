@@ -65,31 +65,13 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        boolean isExit = false;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            showConfirmExit();
+            super.onBackPressed();
         }
     }
 
-    private void showConfirmExit(){
-        AlertDialog alert = new AlertDialog.Builder(this)
-                .setTitle("Confirmar")
-                .setMessage("Deseja realmente sair?")
-                .setNegativeButton("Não", null)
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        exitApp();
-                    }
-                })
-                .show();
-    }
-
-    private void exitApp(){
-        super.onBackPressed();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

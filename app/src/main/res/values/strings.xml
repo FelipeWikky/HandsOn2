@@ -19,7 +19,7 @@
     <string name="title_cad">Cadastro</string>
     <string name="title_list">Prontuários</string>
 
-    <string name="textVisit"><b>Visitou algum destes países?</b></string>
+    <string name="textVisit">Visitou algum destes países?</string>
     <string name="textQuantityDays">Quantas Semanas atrás?</string>
     <string name="textNotFoundProntuario">Nenhum Prontuário encontrado</string>
 
